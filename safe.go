@@ -20,7 +20,7 @@ func inspect(err error) (code int, name string, desc string) {
 	return code, name, desc
 }
 
-func Safe(err error) (*RichError, error) {
+func Safe(err error) (error, error) {
 	if err == nil {
 		return nil, nil
 	}
@@ -30,7 +30,7 @@ func Safe(err error) (*RichError, error) {
 		return nil, err
 	}
 
-	var causedBy *RichError
+	var causedBy error
 	var unsafe error
 	if inner := Unwrap(err); inner != nil {
 		causedBy, unsafe = Safe(inner)
