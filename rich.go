@@ -18,7 +18,7 @@ func NewRich(name string, code int, desc string, link string, data interface{}, 
 	return &RichError{name, code, desc, link, data, causedBy}
 }
 
-func Rich(err error) *RichError {
+func Rich(err error) error {
 	if err == nil {
 		return nil
 	}
